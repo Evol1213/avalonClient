@@ -1,5 +1,5 @@
 'use strict';
-angular.module('myApp', [
+angular.module('evlApp', [
     'ngAnimate',
     'ngResource',
     'ui.router',
@@ -9,16 +9,16 @@ angular.module('myApp', [
     'app.utils',
     'app.web'
 ])
-    .config(function ($provide, $stateProvider, $urlRouterProvider, $locationProvider, $tooltipProvider, $httpProvider, appConfig) {
+    .config(function ($provide, $stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, appConfig) {
         $stateProvider
             .state('gameHall', {
-                url: '/confirmRedirect?type&token',
-                templateUrl: 'partials/confirmRedirect.html',
-                controller: 'ConfirmRedirectCtrl'
+                url: '/gameHall',
+                templateUrl: 'partials/gameHall.html',
+                controller: 'GameHallCtrl'
             });
 
         $urlRouterProvider.otherwise(function () {
-            return '/login';
+            return '/gameHall';
         });
 
         // Initialize get if not there
@@ -30,6 +30,4 @@ angular.module('myApp', [
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
 
         $locationProvider.html5Mode(appConfig.html5Mode);
-        $tooltipProvider.setTriggers({'customEvent': 'closeEvent'});
-
     });
